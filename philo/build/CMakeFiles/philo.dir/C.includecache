@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/seungcoh/바탕화면/doing/philo/philo.c
+philo.h
+/home/seungcoh/바탕화면/doing/philo/philo.h
+
+/home/seungcoh/바탕화면/doing/philo/philo.h
+pthread.h
+-
+unistd.h
+-
+stdlib.h
+-
+time.h
+-
+

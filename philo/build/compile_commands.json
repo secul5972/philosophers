@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/seungcoh/바탕화면/doing/philo/build",
+  "command": "/bin/clang-10   -g   -o CMakeFiles/philo.dir/philo.c.o   -c /home/seungcoh/바탕화면/doing/philo/philo.c",
+  "file": "/home/seungcoh/바탕화면/doing/philo/philo.c"
+},
+{
+  "directory": "/home/seungcoh/바탕화면/doing/philo/build",
+  "command": "/bin/clang-10   -g   -o CMakeFiles/philo.dir/philo2.c.o   -c /home/seungcoh/바탕화면/doing/philo/philo2.c",
+  "file": "/home/seungcoh/바탕화면/doing/philo/philo2.c"
+},
+{
+  "directory": "/home/seungcoh/바탕화면/doing/philo/build",
+  "command": "/bin/clang-10   -g   -o CMakeFiles/philo.dir/philo_utils.c.o   -c /home/seungcoh/바탕화면/doing/philo/philo_utils.c",
+  "file": "/home/seungcoh/바탕화면/doing/philo/philo_utils.c"
+}
+]

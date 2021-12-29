@@ -1,0 +1,5 @@
+/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/package_source.dir
+/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/rebuild_cache.dir
+/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/package.dir
+/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/edit_cache.dir
+/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/philo.dir
