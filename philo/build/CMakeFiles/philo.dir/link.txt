@@ -1,1 +1,1 @@
-/bin/clang-10 -g  -rdynamic CMakeFiles/philo.dir/philo.c.o CMakeFiles/philo.dir/philo2.c.o CMakeFiles/philo.dir/philo_utils.c.o  -o philo 
+/bin/x86_64-linux-gnu-gcc-9 -g  -rdynamic CMakeFiles/philo.dir/philo.c.o CMakeFiles/philo.dir/philo2.c.o CMakeFiles/philo.dir/philo_utils.c.o  -o philo 

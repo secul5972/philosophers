@@ -6,110 +6,110 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:22 by seungcoh          #+#    #+#             */
-/*   Updated: 2021/12/28 13:30:33 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/10 13:38:39 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int philo_init(int argc, char **argv, t_philo_data **philo_data)
+int p_init(int argc, char **argv, t_p_data **p_data)
 {
-	t_philo_data tmp;
-	int philo_n;
+	t_p_data tmp;
+	int p_n;
 	int i;
 
-	*philo_data = 0;
+	*p_data = 0;
 	if (argc != 5 && argc != 6)
 		return 0;
-	philo_n = ft_atoi(argv[1]);
+	p_n = ft_atoi(argv[1]);
 	tmp.die_t = ft_atoi(argv[2]);
 	tmp.eat_t = ft_atoi(argv[3]);
 	tmp.sleep_t = ft_atoi(argv[4]);
-	if(philo_n < 1 || tmp.die_t == -1 || tmp.eat_t == -1 \
+	if(p_n < 1 || tmp.die_t == -1 || tmp.eat_t == -1 \
 	|| tmp.sleep_t == -1 || tmp.eat_n == -1)
 		return 0;
 	if(argc == 6)
 		tmp.eat_n = ft_atoi(argv[5]);
 	if(argc == 6 && tmp.eat_n == -1)
 		return 0;
-	*philo_data = malloc(sizeof(t_philo_data) * (philo_n));
-	if(!*philo_data)
+	*p_data = malloc(sizeof(t_p_data) * (p_n));
+	if(!*p_data)
 		return 0;
 	i = -1;
-	while(++i < philo_n)
+	while(++i < p_n)
 	{
-		(*philo_data)[i].philo_n = philo_n;
-		(*philo_data)[i].philo_id = i;
-		(*philo_data)[i].philo_idc = ft_itoa(i);
-		if((*philo_data)[i].philo_idc)
+		(*p_data)[i].n = p_n;
+		(*p_data)[i].id = i;
+		(*p_data)[i].idc = ft_itoa(i);
+		(*p_data)[i].idl = ft_strlen((*p_data)[i].idc);
+		if(!(*p_data)[i].idc)
 			return 0;
-		(*philo_data)[i].die_t = tmp.die_t;
-		(*philo_data)[i].eat_t = tmp.eat_t;
-		(*philo_data)[i].sleep_t = tmp.sleep_t;
-		(*philo_data)[i].eat_n = tmp.eat_n;
+		(*p_data)[i].die_t = tmp.die_t;
+		(*p_data)[i].eat_t = tmp.eat_t;
+		(*p_data)[i].sleep_t = tmp.sleep_t;
+		(*p_data)[i].eat_n = tmp.eat_n;
 	}
 	return 1;
 }
 
-int lock_init(pthread_mutex_t **locks, int philo_n)
+int lock_init(pthread_mutex_t **locks, int p_n, t_p_data **p_data)
 {
 	int i;
 
-	*locks = malloc(sizeof(pthread_mutex_t) * (philo_n + 1));
+	*locks = malloc(sizeof(pthread_mutex_t) * (p_n + 1));
 	if(!locks)
 		return 0;
 	i = -1;
-	while(++i < philo_n + 1)
+	while(++i < p_n + 1)
 		if(pthread_mutex_init(&(*locks)[i], 0))
 			return 0;
+	i = -1;
+	while(++i < p_n)
+		(*p_data)[i].locks = locks;
 	return 1;
 }
 
-void philo_func(pthread_mutex_t *locks)
-{
-	while(1)
-	{
-		
-	}
-}
-
-int philo_create(pthread_t **philo, int philo_n, pthread_mutex_t *locks)
+int p_create(pthread_t **philo, int p_n, t_p_data *p_data, long start_t)
 {
 	int i;
 
-	*philo = malloc(sizeof(pthread_t) * philo_n);
+	*philo = malloc(sizeof(pthread_t) * p_n);
 	if(!philo)
 		return 0;
 	i = -1;
-	while(++i < philo_n)
-		if(pthread_create(&(*philo)[i], 0, philo_func, (void *)locks))
+	while(++i < p_n)
+	{
+		p_data[i].start_t = start_t;
+		if(pthread_create(&(*philo)[i], 0, p_func, (void *)(p_data + i)))
 			return 0;
+	}
 	return 1;
 }
 
 int main(int argc, char **argv){
 	
-	t_philo_data *philo_data;
+	t_p_data *p_data;
 	pthread_t *philo;
 	pthread_mutex_t *locks;
+	long start_t;
 
-	if (!philo_init(argc, argv, &philo_data))
+	if (!p_init(argc, argv, &p_data))
 	{
 		write(2, "parameter error\n", 16);
-		all_free(philo_data, philo, locks, 1);
+		all_free(p_data, philo, locks, 1);
 		return (0);
 	}
-	if (!lock_init(&locks, philo_data[0].philo_n))
+	if (!lock_init(&locks, p_data[0].n, &p_data))
 	{
 		write(2, "lock error\n", 10);
-		all_free(philo_data, philo, locks, 3);
+		all_free(p_data, philo, locks, 3);
 		return (0);
 	}
-	if (!philo_create(&philo, philo_data[0].philo_n, locks))
+	start_t = get_time(0);
+	if (!p_create(&philo, p_data[0].n, p_data, start_t))
 	{
 		write(2, "thread_create error\n", 20);
-		all_free(philo_data, philo, locks, 7);
+		all_free(p_data, philo, locks, 7);
 		return (0);
 	}
-
 }

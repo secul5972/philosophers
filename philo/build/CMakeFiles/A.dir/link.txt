@@ -1,1 +1,0 @@
-/bin/clang++-10  -g  -rdynamic CMakeFiles/A.dir/main.cpp.o  -o A 

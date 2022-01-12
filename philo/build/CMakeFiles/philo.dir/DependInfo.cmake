@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/seungcoh/바탕화면/doing/philo/philo.c" "/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/philo.dir/philo.c.o"
-  "/home/seungcoh/바탕화면/doing/philo/philo2.c" "/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/philo.dir/philo2.c.o"
-  "/home/seungcoh/바탕화면/doing/philo/philo_utils.c" "/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/philo.dir/philo_utils.c.o"
+  "/home/secul5972/바탕화면/doing/phliosophers/philo/philo.c" "/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles/philo.dir/philo.c.o"
+  "/home/secul5972/바탕화면/doing/phliosophers/philo/philo2.c" "/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles/philo.dir/philo2.c.o"
+  "/home/secul5972/바탕화면/doing/phliosophers/philo/philo_utils.c" "/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles/philo.dir/philo_utils.c.o"
   )
-set(CMAKE_C_COMPILER_ID "Clang")
+set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

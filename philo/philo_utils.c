@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   p_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 12:28:38 by seungcoh          #+#    #+#             */
-/*   Updated: 2021/12/28 13:30:06 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/05 12:35:34 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	ft_atoi(const char *str)
 	return (ret);
 }
 
-char *ft_itoa(int n)
+char *ft_itoa(long n)
 {
 	int		size;
 	char	*ret;
-	int		temp;
+	long	temp;
 
 	temp = n;
 	size = 1;
@@ -55,24 +55,45 @@ char *ft_itoa(int n)
 	return (ret);
 }
 
-void all_free(t_philo_data * philo_data, pthread_t *philo, pthread_mutex_t *locks, int flag)
+
+int	ft_strlen(const char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void all_free(t_p_data * p_data, pthread_t *philo, pthread_mutex_t *locks, int flag)
 {
 	int i;
 	int val;
 
-	if ((flag & 1) && philo_data){
+	if ((flag & 1) && p_data){
 		i = -1;
-		val = philo_data[0].philo_n;
+		val = p_data[0].n;
 		while(++i < val)
 		{
-			if(!philo_data[i].philo_idc)
+			if(!p_data[i].idc)
 				break;
-			free(philo_data[i].philo_idc);
+			free(p_data[i].idc);
 		}
-		free(philo_data);
+		free(p_data);
 	}
 	if ((flag & 2) && philo)
 		free(philo);
 	if ((flag & 4) && locks)
 		free(locks);
+}
+
+long get_time(long start_t)
+{
+	struct timeval t;
+	long curr_t;
+
+	gettimeofday(&t, 0);
+	curr_t = t.tv_sec * 100 + t.tv_usec - start_t;
+	return (curr_t);
 }

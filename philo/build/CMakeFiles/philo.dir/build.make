@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/seungcoh/바탕화면/doing/philo
+CMAKE_SOURCE_DIR = /home/secul5972/바탕화면/doing/phliosophers/philo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/seungcoh/바탕화면/doing/philo/build
+CMAKE_BINARY_DIR = /home/secul5972/바탕화면/doing/phliosophers/philo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/philo.dir/depend.make
@@ -59,42 +59,42 @@ include CMakeFiles/philo.dir/flags.make
 
 CMakeFiles/philo.dir/philo.c.o: CMakeFiles/philo.dir/flags.make
 CMakeFiles/philo.dir/philo.c.o: ../philo.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/philo.dir/philo.c.o"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo.dir/philo.c.o   -c /home/seungcoh/바탕화면/doing/philo/philo.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/philo.dir/philo.c.o"
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo.dir/philo.c.o   -c /home/secul5972/바탕화면/doing/phliosophers/philo/philo.c
 
 CMakeFiles/philo.dir/philo.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philo.dir/philo.c.i"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/seungcoh/바탕화면/doing/philo/philo.c > CMakeFiles/philo.dir/philo.c.i
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/secul5972/바탕화면/doing/phliosophers/philo/philo.c > CMakeFiles/philo.dir/philo.c.i
 
 CMakeFiles/philo.dir/philo.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philo.dir/philo.c.s"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/seungcoh/바탕화면/doing/philo/philo.c -o CMakeFiles/philo.dir/philo.c.s
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/secul5972/바탕화면/doing/phliosophers/philo/philo.c -o CMakeFiles/philo.dir/philo.c.s
 
 CMakeFiles/philo.dir/philo2.c.o: CMakeFiles/philo.dir/flags.make
 CMakeFiles/philo.dir/philo2.c.o: ../philo2.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/philo.dir/philo2.c.o"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo.dir/philo2.c.o   -c /home/seungcoh/바탕화면/doing/philo/philo2.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/philo.dir/philo2.c.o"
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo.dir/philo2.c.o   -c /home/secul5972/바탕화면/doing/phliosophers/philo/philo2.c
 
 CMakeFiles/philo.dir/philo2.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philo.dir/philo2.c.i"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/seungcoh/바탕화면/doing/philo/philo2.c > CMakeFiles/philo.dir/philo2.c.i
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/secul5972/바탕화면/doing/phliosophers/philo/philo2.c > CMakeFiles/philo.dir/philo2.c.i
 
 CMakeFiles/philo.dir/philo2.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philo.dir/philo2.c.s"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/seungcoh/바탕화면/doing/philo/philo2.c -o CMakeFiles/philo.dir/philo2.c.s
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/secul5972/바탕화면/doing/phliosophers/philo/philo2.c -o CMakeFiles/philo.dir/philo2.c.s
 
 CMakeFiles/philo.dir/philo_utils.c.o: CMakeFiles/philo.dir/flags.make
 CMakeFiles/philo.dir/philo_utils.c.o: ../philo_utils.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/philo.dir/philo_utils.c.o"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo.dir/philo_utils.c.o   -c /home/seungcoh/바탕화면/doing/philo/philo_utils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/philo.dir/philo_utils.c.o"
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo.dir/philo_utils.c.o   -c /home/secul5972/바탕화면/doing/phliosophers/philo/philo_utils.c
 
 CMakeFiles/philo.dir/philo_utils.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philo.dir/philo_utils.c.i"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/seungcoh/바탕화면/doing/philo/philo_utils.c > CMakeFiles/philo.dir/philo_utils.c.i
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/secul5972/바탕화면/doing/phliosophers/philo/philo_utils.c > CMakeFiles/philo.dir/philo_utils.c.i
 
 CMakeFiles/philo.dir/philo_utils.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philo.dir/philo_utils.c.s"
-	/bin/clang-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/seungcoh/바탕화면/doing/philo/philo_utils.c -o CMakeFiles/philo.dir/philo_utils.c.s
+	/bin/x86_64-linux-gnu-gcc-9 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/secul5972/바탕화면/doing/phliosophers/philo/philo_utils.c -o CMakeFiles/philo.dir/philo_utils.c.s
 
 # Object files for target philo
 philo_OBJECTS = \
@@ -110,7 +110,7 @@ philo: CMakeFiles/philo.dir/philo2.c.o
 philo: CMakeFiles/philo.dir/philo_utils.c.o
 philo: CMakeFiles/philo.dir/build.make
 philo: CMakeFiles/philo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/seungcoh/바탕화면/doing/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable philo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable philo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/philo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,6 +123,6 @@ CMakeFiles/philo.dir/clean:
 .PHONY : CMakeFiles/philo.dir/clean
 
 CMakeFiles/philo.dir/depend:
-	cd /home/seungcoh/바탕화면/doing/philo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/seungcoh/바탕화면/doing/philo /home/seungcoh/바탕화면/doing/philo /home/seungcoh/바탕화면/doing/philo/build /home/seungcoh/바탕화면/doing/philo/build /home/seungcoh/바탕화면/doing/philo/build/CMakeFiles/philo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/secul5972/바탕화면/doing/phliosophers/philo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/secul5972/바탕화면/doing/phliosophers/philo /home/secul5972/바탕화면/doing/phliosophers/philo /home/secul5972/바탕화면/doing/phliosophers/philo/build /home/secul5972/바탕화면/doing/phliosophers/philo/build /home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles/philo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/philo.dir/depend
 

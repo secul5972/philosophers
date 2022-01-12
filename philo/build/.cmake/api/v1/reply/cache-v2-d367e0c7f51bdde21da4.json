@@ -2,58 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "A_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/seungcoh/바탕화면/doing/philo/build"
-		},
-		{
-			"name" : "A_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/seungcoh/바탕화면/doing/philo"
-		},
-		{
-			"name" : "BUILD_TESTING",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Build the testing tree."
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "BZRCOMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "BZRCOMMAND-NOTFOUND"
-		},
-		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -107,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/seungcoh/바탕화면/doing/philo/build"
+			"value" : "/home/secul5972/바탕화면/doing/phliosophers/philo/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -207,11 +155,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/bin/clang++-10"
+			"value" : "/bin/c++"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -223,11 +171,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "LLVM archiver"
+					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/lib/llvm-10/bin/llvm-ar"
+			"value" : "/bin/gcc-ar-9"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_RANLIB",
@@ -239,11 +187,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Generate index for LLVM archive"
+					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/lib/llvm-10/bin/llvm-ranlib"
+			"value" : "/bin/gcc-ranlib-9"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -275,7 +223,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-g"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
@@ -291,7 +239,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-Os -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_RELEASE",
@@ -307,7 +255,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-O3 -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_RELWITHDEBINFO",
@@ -323,7 +271,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-O2 -g -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_C_COMPILER",
@@ -339,7 +287,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/bin/clang-10"
+			"value" : "/bin/x86_64-linux-gnu-gcc-9"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -351,11 +299,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "LLVM archiver"
+					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/lib/llvm-10/bin/llvm-ar"
+			"value" : "/bin/gcc-ar-9"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -367,11 +315,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Generate index for LLVM archive"
+					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/lib/llvm-10/bin/llvm-ranlib"
+			"value" : "/bin/gcc-ranlib-9"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -647,7 +595,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/seungcoh/바탕화면/doing/philo"
+			"value" : "/home/secul5972/바탕화면/doing/phliosophers/philo"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1234,532 +1182,28 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "COVERAGE_COMMAND",
+			"name" : "a_BINARY_DIR",
 			"properties" : 
 			[
 				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
 					"name" : "HELPSTRING",
-					"value" : "Path to the coverage program that CTest uses for performing coverage inspection"
+					"value" : "Value Computed by CMake"
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcov"
+			"type" : "STATIC",
+			"value" : "/home/secul5972/바탕화면/doing/phliosophers/philo/build"
 		},
 		{
-			"name" : "COVERAGE_EXTRA_FLAGS",
+			"name" : "a_SOURCE_DIR",
 			"properties" : 
 			[
 				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
 					"name" : "HELPSTRING",
-					"value" : "Extra command line flags to pass to the coverage tool"
+					"value" : "Value Computed by CMake"
 				}
 			],
-			"type" : "STRING",
-			"value" : "-l"
-		},
-		{
-			"name" : "CPACK_BINARY_DEB",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build Debian packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_BINARY_FREEBSD",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build FreeBSD packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_BINARY_IFW",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build IFW packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_BINARY_NSIS",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build NSIS packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_BINARY_RPM",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build RPM packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_BINARY_STGZ",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build STGZ packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "CPACK_BINARY_TBZ2",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TBZ2 packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_BINARY_TGZ",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TGZ packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "CPACK_BINARY_TXZ",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TXZ packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_BINARY_TZ",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TZ packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "CPACK_SOURCE_RPM",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build RPM source packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CPACK_SOURCE_TBZ2",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TBZ2 source packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "CPACK_SOURCE_TGZ",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TGZ source packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "CPACK_SOURCE_TXZ",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TXZ source packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "CPACK_SOURCE_TZ",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build TZ source packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
-			"name" : "CPACK_SOURCE_ZIP",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable to build ZIP source packages"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "CTEST_SUBMIT_RETRY_COUNT",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "How many times to retry timed-out CTest submissions."
-				}
-			],
-			"type" : "STRING",
-			"value" : "3"
-		},
-		{
-			"name" : "CTEST_SUBMIT_RETRY_DELAY",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "How long to wait between timed-out CTest submissions."
-				}
-			],
-			"type" : "STRING",
-			"value" : "5"
-		},
-		{
-			"name" : "CVSCOMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "CVSCOMMAND-NOTFOUND"
-		},
-		{
-			"name" : "CVS_UPDATE_OPTIONS",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Options passed to the cvs update command."
-				}
-			],
-			"type" : "STRING",
-			"value" : "-d -A -P"
-		},
-		{
-			"name" : "DART_TESTING_TIMEOUT",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Maximum time allowed before CTest will kill the test."
-				}
-			],
-			"type" : "STRING",
-			"value" : "1500"
-		},
-		{
-			"name" : "GITCOMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "/usr/bin/git"
-		},
-		{
-			"name" : "HGCOMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "HGCOMMAND-NOTFOUND"
-		},
-		{
-			"name" : "MAKECOMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Command to build the project"
-				}
-			],
-			"type" : "STRING",
-			"value" : "/usr/bin/cmake --build . --config \"${CTEST_CONFIGURATION_TYPE}\" -- -i"
-		},
-		{
-			"name" : "MEMORYCHECK_COMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to the memory checking command, used for memory error detection."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "/usr/bin/valgrind"
-		},
-		{
-			"name" : "MEMORYCHECK_SUPPRESSIONS_FILE",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "File that contains suppressions for the memory checker"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : ""
-		},
-		{
-			"name" : "P4COMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "P4COMMAND-NOTFOUND"
-		},
-		{
-			"name" : "SITE",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Name of the computer/site where compile is being run"
-				}
-			],
-			"type" : "STRING",
-			"value" : "seungcoh-All-Series"
-		},
-		{
-			"name" : "SLURM_SBATCH_COMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to the SLURM sbatch executable"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "SLURM_SBATCH_COMMAND-NOTFOUND"
-		},
-		{
-			"name" : "SLURM_SRUN_COMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to the SLURM srun executable"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "SLURM_SRUN_COMMAND-NOTFOUND"
-		},
-		{
-			"name" : "SVNCOMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "SVNCOMMAND-NOTFOUND"
+			"type" : "STATIC",
+			"value" : "/home/secul5972/바탕화면/doing/phliosophers/philo"
 		},
 		{
 			"name" : "philo_BINARY_DIR",
@@ -1771,7 +1215,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/seungcoh/바탕화면/doing/philo/build"
+			"value" : "/home/secul5972/바탕화면/doing/phliosophers/philo/build"
 		},
 		{
 			"name" : "philo_SOURCE_DIR",
@@ -1783,7 +1227,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/seungcoh/바탕화면/doing/philo"
+			"value" : "/home/secul5972/바탕화면/doing/phliosophers/philo"
 		}
 	],
 	"kind" : "cache",
