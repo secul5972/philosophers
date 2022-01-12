@@ -6,24 +6,23 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/10 13:38:31 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/12 14:46:04 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int print_status(t_p_data *p_data, int status)
+int print_status(t_p_data *data, int status)
 {
-	struct timeval t;
 	long curr_t;
 	char *curr_tc;
 
-	curr_t = get_time(p_data->start_t);
+	curr_t = get_time(data->start_t);
 	curr_tc = ft_itoa(curr_t);
 	if (curr_tc == 0)
 		return 0;
 	write(1, curr_tc, ft_strlen(curr_tc));
-	write(1, p_data->idc, p_data->idl);
+	write(1, data->idc, data->idl);
 	if (status == 0)
 		write(1, " has taken a fork\n", 18);
 	if (status == 1)
@@ -37,38 +36,82 @@ int print_status(t_p_data *p_data, int status)
 	return 1;
 }
 
-int waiting(t_p_data *p_data)
+int chk_time(long t1, long t2)
 {
-	while (1)
-	{
-		if (p_data->id == p_data->n - 1)
-		{
-			if (pthread_mutex_lock(p_data->locks + p_data->id + 1))
-				break;
-			if (pthread_mutex_lock(p_data->locks + p_data->id))
-				break;
-			if (!print_status(p_data, 0))
-				return 0;
-			return 1;
-		}
-		else
-		{
-			if (pthread_mutex_lock(p_data->locks + p_data->id))
-				break;
-			if (pthread_mutex_lock(p_data->locks + p_data->id + 1))
-				break;
-			if (!print_status(p_data, 0))
-				return 0;
-			return 1;
-		}
-	}
+	if (get_time(0) - t1 >= t2)
+		return 0;
+	else
+		return 1;
 }
 
-int p_func(t_p_data *p_data)
+int waiting(t_p_data *data)
 {
+	if (!chk_time(data->start_t, data->eat_t))
+		return 0;
+	if (data->id == data->n - 1)
+	{
+		while(pthread_mutex_lock(*(data->locks + (data->id + 1) % data->n)))
+			if(!chk_time(data->start_t, data->eat_t))
+				return 0;
+		if (!print_status(data, 0))
+			return 0;
+		while(pthread_mutex_lock(*(data->locks + data->id)))
+			if(!chk_time(data->start_t, data->eat_t))
+				return 0;
+		if (!print_status(data, 0))
+		return 0;
+	}
+	else
+	{
+		while(pthread_mutex_lock(*(data->locks + data->id)))
+			if(!chk_time(data->start_t, data->eat_t))
+				return 0;
+		if (!print_status(data, 0))
+			return 0;
+		while(pthread_mutex_lock(*(data->locks + (data->id + 1) % data->n)))
+			if(!chk_time(data->start_t, data->eat_t))
+				return 0;
+		if (!print_status(data, 0))
+			return 0;
+	}
+	return 1;
+}
+
+int eating(t_p_data *data)
+{
+	if (!print_status(data, 1))
+		return 0;
+	usleep(1000 * data->eat_t);
+	pthread_mutex_unlock(*(data->locks + data->id));
+	pthread_mutex_unlock(*(data->locks + (data->id + 1) % data->n));
+	return 1;
+}
+
+int sleeping(t_p_data *data)
+{
+	if (!print_status(data, 2))
+		return 0;
+	usleep(1000 * data->sleep_t);
+	return 1;
+}
+
+int func(t_p_data *data)
+{
+	int i;
+
+	i = 0;
 	while (1)
 	{
-		if (!waiting(p_data))
+		if (!waiting(data))
+			return 0;
+		if (!eating(data))
+			return 0;
+		if (!sleeping(data))
+			return 0;
+		i++;
+		if(data->eat_n == i)
+			return 1;
+		if (!print_status(data, 3))
 			return 0;
 	}
 }
