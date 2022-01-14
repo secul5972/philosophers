@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/12 14:46:04 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:31:31 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int print_status(t_p_data *data, int status)
 	curr_tc = ft_itoa(curr_t);
 	if (curr_tc == 0)
 		return 0;
+	pthread_mutex_lock(&(data->locks[data->n]));
 	write(1, curr_tc, ft_strlen(curr_tc));
 	write(1, data->idc, data->idl);
 	if (status == 0)
@@ -33,6 +34,7 @@ int print_status(t_p_data *data, int status)
 		write(1, " is thinking\n", 13);
 	if (status == 4)
 		write(1, " died\n", 18);
+	pthread_mutex_unlock(&(data->locks[data->n]));
 	return 1;
 }
 
@@ -50,12 +52,12 @@ int waiting(t_p_data *data)
 		return 0;
 	if (data->id == data->n - 1)
 	{
-		while(pthread_mutex_lock(*(data->locks + (data->id + 1) % data->n)))
+		while(pthread_mutex_unlock(&(data->locks[(data->id + 1) % data->n])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
 			return 0;
-		while(pthread_mutex_lock(*(data->locks + data->id)))
+		while(pthread_mutex_unlock(&(data->locks[data->id])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
@@ -63,12 +65,12 @@ int waiting(t_p_data *data)
 	}
 	else
 	{
-		while(pthread_mutex_lock(*(data->locks + data->id)))
+		while(pthread_mutex_unlock(&(data->locks[data->id])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
 			return 0;
-		while(pthread_mutex_lock(*(data->locks + (data->id + 1) % data->n)))
+		while(pthread_mutex_unlock(&(data->locks[(data->id + 1) % data->n])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
@@ -82,8 +84,8 @@ int eating(t_p_data *data)
 	if (!print_status(data, 1))
 		return 0;
 	usleep(1000 * data->eat_t);
-	pthread_mutex_unlock(*(data->locks + data->id));
-	pthread_mutex_unlock(*(data->locks + (data->id + 1) % data->n));
+	pthread_mutex_unlock(&(data->locks[data->id]));
+	pthread_mutex_unlock(&(data->locks[(data->id + 1) % data->n]));
 	return 1;
 }
 
@@ -95,11 +97,14 @@ int sleeping(t_p_data *data)
 	return 1;
 }
 
-int func(t_p_data *data)
+void *func(void *arg)
 {
 	int i;
+	t_p_data *data;
 
+	data = arg;
 	i = 0;
+
 	while (1)
 	{
 		if (!waiting(data))
@@ -110,8 +115,9 @@ int func(t_p_data *data)
 			return 0;
 		i++;
 		if(data->eat_n == i)
-			return 1;
+			return (void*)1;
 		if (!print_status(data, 3))
 			return 0;
 	}
+	return 0;
 }

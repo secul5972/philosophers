@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:22 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/12 14:55:37 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:31:32 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int p_init(int argc, char **argv, t_p_data **p_data)
 		tmp.eat_n = ft_atoi(argv[5]);
 	if(argc == 6 && tmp.eat_n == -1)
 		return 0;
-	*p_data = malloc(sizeof(t_p_data) * (p_n));
+	*p_data = (t_p_data *)malloc(sizeof(t_p_data) * (p_n));
 	if(!*p_data)
 		return 0;
 	i = -1;
@@ -57,16 +57,17 @@ int lock_init(pthread_mutex_t **locks, int p_n, t_p_data **p_data)
 {
 	int i;
 
-	*locks = malloc(sizeof(pthread_mutex_t) * (p_n + 1));
+	*locks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (p_n + 1));
 	if(!locks)
 		return 0;
 	i = -1;
-	while(++i < p_n + 1)
+	while(++i < p_n + 1){
 		if(pthread_mutex_init(&(*locks)[i], 0))
 			return 0;
+	}
 	i = -1;
 	while(++i < p_n)
-		(*p_data)[i].locks = locks;
+		(*p_data)[i].locks = *locks;
 	return 1;
 }
 
@@ -74,8 +75,7 @@ int p_create(pthread_t **philo_p, int p_n, t_p_data *p_data, long start_t)
 {
 	int i;
 	pthread_t *philo;
-
-	*philo_p = malloc(sizeof(pthread_t) * p_n);
+	*philo_p = (pthread_t *)malloc(sizeof(pthread_t) * p_n);
 	philo = *philo_p;
 	if(!philo)
 		return 0;
@@ -83,8 +83,9 @@ int p_create(pthread_t **philo_p, int p_n, t_p_data *p_data, long start_t)
 	while(++i < p_n)
 	{
 		p_data[i].start_t = start_t;
-		if(pthread_create(&(philo[i]), 0, (void *)func, (void *)(p_data + i)))
+		if(pthread_create(&(philo[i]), 0, func, (void *)(p_data + i))){
 			return 0;
+		}
 	}
 	return 1;
 }

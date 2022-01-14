@@ -6,13 +6,14 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:16 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/12 14:41:21 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:31:31 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+#include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -29,7 +30,7 @@ typedef struct s_p_data
 	int sleep_t;
 	int eat_n;
 	int start_t;
-	pthread_mutex_t **locks;
+	pthread_mutex_t *locks;
 }	t_p_data;
 
 int	ft_atoi(const char *str);
@@ -37,6 +38,6 @@ char *ft_itoa(long n);
 int	ft_strlen(const char *str);
 void all_free(t_p_data * p_data, pthread_t *philo, pthread_mutex_t *locks, int flag);
 long get_time(long start_t);
-int func(t_p_data *data);
+void *func(void *data);
 
 #endif

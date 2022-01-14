@@ -6,17 +6,19 @@
 
 #IncludeRegexTransform: 
 
+/home/secul5972/바탕화면/doing/phliosophers/philo/philo.c
+philo.h
 /home/secul5972/바탕화면/doing/phliosophers/philo/philo.h
+
+/home/secul5972/바탕화면/doing/phliosophers/philo/philo.h
+stdio.h
+-
 pthread.h
 -
 unistd.h
 -
 stdlib.h
 -
-time.h
+sys/time.h
 -
-
-/home/secul5972/바탕화면/doing/phliosophers/philo/philo_utils.c
-philo.h
-/home/secul5972/바탕화면/doing/phliosophers/philo/philo.h
 
