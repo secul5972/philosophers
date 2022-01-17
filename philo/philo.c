@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:22 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/14 16:31:32 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:24:08 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ int p_create(pthread_t **philo_p, int p_n, t_p_data *p_data, long start_t)
 	if(!philo)
 		return 0;
 	i = -1;
+	
 	while(++i < p_n)
 	{
 		p_data[i].start_t = start_t;
-		if(pthread_create(&(philo[i]), 0, func, (void *)(p_data + i))){
+		if (pthread_create(&philo[i], 0, func, (void *)(&p_data[i])))
 			return 0;
-		}
 	}
 	return 1;
 }
@@ -116,4 +116,5 @@ int main(int argc, char **argv){
 		all_free(p_data, philo, locks, 7);
 		return (0);
 	}
+	while(1);
 }

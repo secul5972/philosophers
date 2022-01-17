@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:16 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/14 16:31:31 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:04:41 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_p_data
 	int eat_t;
 	int sleep_t;
 	int eat_n;
-	int start_t;
+	long start_t;
 	pthread_mutex_t *locks;
 }	t_p_data;
 

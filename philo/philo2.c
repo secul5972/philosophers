@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/14 16:31:31 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:27:41 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int chk_time(long t1, long t2)
 
 int waiting(t_p_data *data)
 {
-	if (!chk_time(data->start_t, data->eat_t))
-		return 0;
 	if (data->id == data->n - 1)
 	{
 		while(pthread_mutex_unlock(&(data->locks[(data->id + 1) % data->n])))
@@ -104,7 +102,6 @@ void *func(void *arg)
 
 	data = arg;
 	i = 0;
-
 	while (1)
 	{
 		if (!waiting(data))
