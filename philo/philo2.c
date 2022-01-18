@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/17 15:27:41 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/18 13:39:31 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int print_status(t_p_data *data, int status)
 		return 0;
 	pthread_mutex_lock(&(data->locks[data->n]));
 	write(1, curr_tc, ft_strlen(curr_tc));
+	write(1, " ", 1);
 	write(1, data->idc, data->idl);
 	if (status == 0)
 		write(1, " has taken a fork\n", 18);
@@ -50,12 +51,12 @@ int waiting(t_p_data *data)
 {
 	if (data->id == data->n - 1)
 	{
-		while(pthread_mutex_unlock(&(data->locks[(data->id + 1) % data->n])))
+		while(pthread_mutex_lock(&(data->locks[(data->id + 1) % data->n])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
 			return 0;
-		while(pthread_mutex_unlock(&(data->locks[data->id])))
+		while(pthread_mutex_lock(&(data->locks[data->id])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
@@ -63,12 +64,12 @@ int waiting(t_p_data *data)
 	}
 	else
 	{
-		while(pthread_mutex_unlock(&(data->locks[data->id])))
+		while(pthread_mutex_lock(&(data->locks[data->id])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
 			return 0;
-		while(pthread_mutex_unlock(&(data->locks[(data->id + 1) % data->n])))
+		while(pthread_mutex_lock(&(data->locks[(data->id + 1) % data->n])))
 			if(!chk_time(data->start_t, data->eat_t))
 				return 0;
 		if (!print_status(data, 0))
@@ -100,7 +101,7 @@ void *func(void *arg)
 	int i;
 	t_p_data *data;
 
-	data = arg;
+	data = (t_p_data *)arg;
 	i = 0;
 	while (1)
 	{

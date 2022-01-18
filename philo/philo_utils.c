@@ -94,6 +94,6 @@ long get_time(long start_t)
 	long curr_t;
 
 	gettimeofday(&t, 0);
-	curr_t = t.tv_sec * 100 + t.tv_usec - start_t;
+	curr_t = t.tv_sec * 1000 + t.tv_usec / 1000 - start_t;
 	return (curr_t);
 }
