@@ -55,7 +55,6 @@ char *ft_itoa(long n)
 	return (ret);
 }
 
-
 int	ft_strlen(const char *str)
 {
 	int i;
@@ -91,9 +90,34 @@ void all_free(t_p_data * p_data, pthread_t *philo, pthread_mutex_t *locks, int f
 long get_time(long start_t)
 {
 	struct timeval t;
-	long curr_t;
 
 	gettimeofday(&t, 0);
-	curr_t = t.tv_sec * 1000 + t.tv_usec / 1000 - start_t;
-	return (curr_t);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000 - start_t);
+}
+
+int print_status(t_p_data *data, int status)
+{
+	long curr_t;
+	char *curr_tc;
+
+	curr_t = get_time(data->start_t);
+	curr_tc = ft_itoa(curr_t);
+	if (curr_tc == 0)
+		return 0;
+	pthread_mutex_lock(data->p_lock);
+	write(1, curr_tc, ft_strlen(curr_tc));
+	write(1, "ms ", 3);
+	write(1, data->idc, data->idl);
+	if (status == 0)
+		write(1, " has taken a fork\n", 18);
+	if (status == 1)
+		write(1, " is eating\n", 11);
+	if (status == 2)
+		write(1, " is sleeping\n", 13);
+	if (status == 3)
+		write(1, " is thinking\n", 13);
+	if (status == 4)
+		write(1, " died\n", 6);
+	pthread_mutex_unlock(data->p_lock);
+	return 1;
 }

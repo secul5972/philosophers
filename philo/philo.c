@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:22 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/17 15:24:08 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:14:51 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,81 +39,106 @@ int p_init(int argc, char **argv, t_p_data **p_data)
 	i = -1;
 	while(++i < p_n)
 	{
-		(*p_data)[i].n = p_n;
-		(*p_data)[i].id = i;
-		(*p_data)[i].idc = ft_itoa(i);
-		(*p_data)[i].idl = ft_strlen((*p_data)[i].idc);
-		if(!(*p_data)[i].idc)
+		(*p_data + i)->n = p_n;
+		(*p_data + i)->id = i;
+		(*p_data + i)->idc = ft_itoa(i);
+		(*p_data + i)->idl = ft_strlen((*p_data + i)->idc);
+		if(!(*p_data + i)->idc)
 			return 0;
-		(*p_data)[i].die_t = tmp.die_t;
-		(*p_data)[i].eat_t = tmp.eat_t;
-		(*p_data)[i].sleep_t = tmp.sleep_t;
-		(*p_data)[i].eat_n = tmp.eat_n;
+		(*p_data + i)->die_t = tmp.die_t;
+		(*p_data + i)->eat_t = tmp.eat_t;
+		(*p_data + i)->sleep_t = tmp.sleep_t;
+		(*p_data + i)->eat_n = tmp.eat_n;
 	}
 	return 1;
 }
 
-int lock_init(pthread_mutex_t **locks, int p_n, t_p_data **p_data)
+int fork_init(t_fork **forks, t_p_data **p_data)
 {
 	int i;
+	pthread_mutex_t *p_lock;
 
-	*locks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (p_n + 1));
-	if(!locks)
+	p_lock = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
+	*forks = (t_fork*)malloc(sizeof(t_fork) * (*p_data)->n);
+	if (!forks)
 		return 0;
 	i = -1;
-	while(++i < p_n + 1){
-		if(pthread_mutex_init(&(*locks)[i], 0))
+	while (++i < (*p_data)->n)
+	{
+		(*forks + i)->fork = i;
+		(*forks + i)->lock = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
+		if (pthread_mutex_init((*forks + i)->lock, 0))
 			return 0;
 	}
 	i = -1;
-	while(++i < p_n)
-		(*p_data)[i].locks = *locks;
+	while (++i < (*p_data)->n - 1)
+	{
+		(*p_data + i)->ffork = (*forks + i);
+		(*p_data + i)->sfork = (*forks + i + 1);
+		(*p_data + i)->use_ffork = -1;
+		(*p_data + i)->use_sfork = -1;
+		(*p_data + i)->p_lock = p_lock;
+	}
+	(*p_data + i)->ffork = (*forks + 0);
+	(*p_data + i)->sfork = (*forks + i);
+	(*p_data + i)->use_ffork = -1;
+	(*p_data + i)->use_sfork = -1;
+	(*p_data + i)->p_lock = p_lock;
 	return 1;
 }
 
-int p_create(pthread_t **philo_p, int p_n, t_p_data *p_data, long start_t)
+int p_create(pthread_t **philo_p, t_p_data *p_data)
 {
 	int i;
 	pthread_t *philo;
-	*philo_p = (pthread_t *)malloc(sizeof(pthread_t) * p_n);
+	long start_t;
+
+	*philo_p = (pthread_t *)malloc(sizeof(pthread_t) * p_data->n);
 	philo = *philo_p;
 	if(!philo)
 		return 0;
+	start_t = get_time(0);
 	i = -1;
-	
-	while(++i < p_n)
+	while(++i < p_data->n / 2)
 	{
-		p_data[i].start_t = start_t;
-		if (pthread_create(&philo[i], 0, func, (void *)(&p_data[i])))
+		p_data[i * 2 + 1].start_t = start_t;
+		if (pthread_create(&philo[i * 2 + 1], 0, func, (void *)(&p_data[i * 2 + 1])))
+			return 0;
+	}
+	i = -1;
+	while(++i < p_data->n / 2 + p_data->n % 2)
+	{
+		p_data[i * 2].start_t = start_t;
+		if (pthread_create(&philo[i * 2], 0, func, (void *)(&p_data[i * 2])))
 			return 0;
 	}
 	return 1;
 }
+
+
 
 int main(int argc, char **argv){
 	
 	t_p_data *p_data;
 	pthread_t *philo;
-	pthread_mutex_t *locks;
-	long start_t;
+	t_fork *forks;
 
 	if (!p_init(argc, argv, &p_data))
 	{
 		write(2, "parameter error\n", 16);
-		all_free(p_data, philo, locks, 1);
+		//all_free(p_data, philo, locks, 1);
 		return (0);
 	}
-	if (!lock_init(&locks, p_data[0].n, &p_data))
+	if (!fork_init(&forks, &p_data))
 	{
 		write(2, "lock error\n", 10);
-		all_free(p_data, philo, locks, 3);
+		//all_free(p_data, philo, locks, 3);
 		return (0);
 	}
-	start_t = get_time(0);
-	if (!p_create(&philo, p_data[0].n, p_data, start_t))
+	if (!p_create(&philo, p_data))
 	{
 		write(2, "thread_create error\n", 20);
-		all_free(p_data, philo, locks, 7);
+		//all_free(p_data, philo, locks, 7);
 		return (0);
 	}
 	while(1);
