@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:16 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/25 13:26:44 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:11:32 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_p_data
 	int eat_t;
 	int sleep_t;
 	int eat_n;
+	int *esc_flag;
 	long start_t;
 	long wait_start_t;
 	int use_ffork;
@@ -42,6 +43,7 @@ typedef struct s_p_data
 	t_fork *ffork;
 	t_fork *sfork;
 	pthread_mutex_t *p_lock;
+	pthread_mutex_t *v_lock;
 }	t_p_data;
 
 int	ft_atoi(const char *str);

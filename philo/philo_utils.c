@@ -100,13 +100,18 @@ int print_status(t_p_data *data, int status)
 	long curr_t;
 	char *curr_tc;
 
+	if (*data->esc_flag)
+		return 0;
 	curr_t = get_time(data->start_t);
 	curr_tc = ft_itoa(curr_t);
 	if (curr_tc == 0)
+	{
+		*data->esc_flag = 0;
 		return 0;
+	}
 	pthread_mutex_lock(data->p_lock);
 	write(1, curr_tc, ft_strlen(curr_tc));
-	write(1, "ms ", 3);
+	write(1, " ", 1);
 	write(1, data->idc, data->idl);
 	if (status == 0)
 		write(1, " has taken a fork\n", 18);
