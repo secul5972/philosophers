@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/27 14:37:03 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:34:14 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int eating(t_p_data *data)
 			*data->esc_flag = -1;
 			return (unlock(data, 3));
 		}
-		//usleep(20);
+		usleep(100);
 	}
 	pthread_mutex_unlock(data->ffork->lock);
 	data->use_ffork = -1;
@@ -66,8 +66,8 @@ int sleeping(t_p_data *data)
 	if (!print_status(data, 2))
 		return 0;
 	sleep_start_t = get_time(0);
-	while (sleep_start_t + data->sleep_t > get_time(0));
-		//usleep(20);
+	while (sleep_start_t + data->sleep_t > get_time(0))
+		usleep(100);
 	return 1;
 }
 

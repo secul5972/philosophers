@@ -100,7 +100,7 @@ int print_status(t_p_data *data, int status)
 	long curr_t;
 	char *curr_tc;
 
-	if (*data->esc_flag)
+	if (*data->esc_flag == -1)
 		return 0;
 	curr_t = get_time(data->start_t);
 	curr_tc = ft_itoa(curr_t);
