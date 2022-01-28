@@ -1,3 +1,0 @@
-/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles/rebuild_cache.dir
-/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles/edit_cache.dir
-/home/secul5972/바탕화면/doing/phliosophers/philo/build/CMakeFiles/philo.dir
