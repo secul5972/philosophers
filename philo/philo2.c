@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/28 13:34:14 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:40:42 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int waiting(t_p_data *data)
 	data->use_ffork = data->ffork->fork;
 	if (!print_status(data, 0))
 		return (unlock(data, 1));
+	if (data->ffork->lock == data->sfork->lock)
+	{
+		*data->esc_flag = -1;
+		return unlock(data, 1);
+	}
 	pthread_mutex_lock(data->sfork->lock);
 	data->use_sfork = data->sfork->fork;
 	if (!print_status(data, 0))
