@@ -6,7 +6,7 @@
 #    By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 14:34:46 by seungcoh          #+#    #+#              #
-#    Updated: 2022/01/12 14:58:04 by seungcoh         ###   ########.fr        #
+#    Updated: 2022/01/28 15:24:14 by seungcoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME = philo
 SRCS = philo.c\
 		philo2.c\
 		philo_utils.c\
+		philo_utils2.c\
 		
 OBJS = $(SRCS:.c=.o)
 
