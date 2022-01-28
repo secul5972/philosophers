@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:16 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/27 14:11:32 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:02:30 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ typedef struct s_fork
 	int fork;
 	pthread_mutex_t *lock;
 } t_fork;
+
+typedef struct s_locks
+{
+	pthread_mutex_t *p_lock;
+	pthread_mutex_t *v_lock;
+	t_fork *forks;
+} t_locks;
 
 typedef struct s_p_data
 {
@@ -49,7 +56,7 @@ typedef struct s_p_data
 int	ft_atoi(const char *str);
 char *ft_itoa(long n);
 int	ft_strlen(const char *str);
-void all_free(t_p_data * p_data, pthread_t *philo, pthread_mutex_t *locks, int flag);
+void all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag);
 long get_time(long start_t);
 int print_status(t_p_data *data, int status);
 void *func(void *data);

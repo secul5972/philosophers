@@ -65,15 +65,15 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-void all_free(t_p_data * p_data, pthread_t *philo, pthread_mutex_t *locks, int flag)
+void all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag)
 {
 	int i;
-	int val;
+	int n;
 
 	if ((flag & 1) && p_data){
+		n = p_data[0].n;
 		i = -1;
-		val = p_data[0].n;
-		while(++i < val)
+		while(++i < n)
 		{
 			if(!p_data[i].idc)
 				break;
@@ -81,10 +81,25 @@ void all_free(t_p_data * p_data, pthread_t *philo, pthread_mutex_t *locks, int f
 		}
 		free(p_data);
 	}
-	if ((flag & 2) && philo)
+	if ((flag & 2) && locks->p_lock)
+		free(locks->p_lock);
+	if ((flag & 2) && locks->v_lock)
+		free(locks->v_lock);
+	if ((flag & 2) && locks->forks)
+	{
+		i = -1;
+		while (++i < n)
+		{
+			if (!(locks->forks + i)->lock)
+				break;
+			free((locks->forks + i)->lock);
+		}
+		free(p_data->ffork);
+	}
+
+	if ((flag & 4) && philo)
 		free(philo);
-	if ((flag & 4) && locks)
-		free(locks);
+	
 }
 
 long get_time(long start_t)
