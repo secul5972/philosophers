@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:23:35 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/28 15:32:29 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/29 14:47:04 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	print_status(t_p_data *data, int status)
 	if (curr_tc == 0)
 	{
 		*data->esc_flag = -1;
+		free(curr_tc);
 		return (0);
 	}
 	pthread_mutex_lock(data->p_lock);
@@ -41,5 +42,6 @@ int	print_status(t_p_data *data, int status)
 	if (status == 4)
 		write(1, " died\n", 6);
 	pthread_mutex_unlock(data->p_lock);
+	free(curr_tc);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:22 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/28 15:40:50 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/29 15:53:58 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	fork_init(t_locks *locks, t_p_data **p_data)
 			return (0);
 	}
 	i = -1;
+	pthread_mutex_init(locks->p_lock, 0);
+	pthread_mutex_init(locks->v_lock, 0);
 	while (++i < (*p_data)->n - 1)
 	{
 		(*p_data + i)->ffork = (locks->forks + i);

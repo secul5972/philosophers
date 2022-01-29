@@ -97,7 +97,7 @@ void	all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag)
 				break ;
 			free((locks->forks + i)->lock);
 		}
-		free(p_data->ffork);
+		free(locks->forks);
 	}
 	if ((flag & 4) && philo)
 		free(philo);
