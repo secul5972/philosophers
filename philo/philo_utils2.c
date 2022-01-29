@@ -6,11 +6,28 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:23:35 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/29 16:25:59 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/29 16:39:19 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	write_data(t_p_data *data, int status, char *curr_tc)
+{
+	write(1, curr_tc, ft_strlen(curr_tc));
+	write(1, " ", 1);
+	write(1, data->idc, data->idl);
+	if (status == 0)
+		write(1, " has taken a fork\n", 18);
+	if (status == 1)
+		write(1, " is eating\n", 11);
+	if (status == 2)
+		write(1, " is sleeping\n", 13);
+	if (status == 3)
+		write(1, " is thinking\n", 13);
+	if (status == 4)
+		write(1, " died\n", 6);
+}
 
 int	print_status(t_p_data *data, int status)
 {
@@ -28,19 +45,7 @@ int	print_status(t_p_data *data, int status)
 		return (0);
 	}
 	pthread_mutex_lock(data->p_lock);
-	write(1, curr_tc, ft_strlen(curr_tc));
-	write(1, " ", 1);
-	write(1, data->idc, data->idl);
-	if (status == 0)
-		write(1, " has taken a fork\n", 18);
-	if (status == 1)
-		write(1, " is eating\n", 11);
-	if (status == 2)
-		write(1, " is sleeping\n", 13);
-	if (status == 3)
-		write(1, " is thinking\n", 13);
-	if (status == 4)
-		write(1, " died\n", 6);
+	write_data(data, status, curr_tc);
 	pthread_mutex_unlock(data->p_lock);
 	free(curr_tc);
 	return (1);
