@@ -67,23 +67,26 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-void	all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag)
+void	p_data_free(t_p_data *p_data)
 {
 	int	i;
 	int	n;
 
-	if ((flag & 1) && p_data)
+	n = p_data[0].n;
+	i = -1;
+	while (++i < n)
 	{
-		n = p_data[0].n;
-		i = -1;
-		while (++i < n)
-		{
-			if (!p_data[i].idc)
-				break ;
-			free(p_data[i].idc);
-		}
-		free(p_data);
+		if (!p_data[i].idc)
+			break ;
+		free(p_data[i].idc);
 	}
+	free(p_data);
+}
+
+int	all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag)
+{
+	int	i;
+
 	if ((flag & 2) && locks->p_lock)
 		free(locks->p_lock);
 	if ((flag & 2) && locks->v_lock)
@@ -91,7 +94,7 @@ void	all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag)
 	if ((flag & 2) && locks->forks)
 	{
 		i = -1;
-		while (++i < n)
+		while (++i < p_data[0].n)
 		{
 			if (!(locks->forks + i)->lock)
 				break ;
@@ -101,12 +104,7 @@ void	all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag)
 	}
 	if ((flag & 4) && philo)
 		free(philo);
-}
-
-long	get_time(long start_t)
-{
-	struct timeval	t;
-
-	gettimeofday(&t, 0);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000 - start_t);
+	if ((flag & 1) && p_data)
+		p_data_free(p_data);
+	return (1);
 }

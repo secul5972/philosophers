@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:16 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/28 15:36:03 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/29 16:20:10 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ typedef struct s_p_data
 int		ft_atoi(const char *str);
 char	*ft_itoa(long n);
 int		ft_strlen(const char *str);
-void	all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag);
+int		all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag);
 long	get_time(long start_t);
 int		print_status(t_p_data *data, int status);
 void	*func(void *data);
+int		p_create(pthread_t **philo, t_p_data *p_data, int *esc_flag);
+void	p_esc(pthread_t *philo, t_p_data *p_data, int *esc_flag);
 
 #endif

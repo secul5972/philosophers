@@ -5,99 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/29 14:36:14 by seungcoh         ###   ########.fr       */
+/*   Created: 2022/01/29 16:12:01 by seungcoh          #+#    #+#             */
+/*   Updated: 2022/01/29 16:20:43 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	unlock(t_p_data *data, int flag)
+int	p_create(pthread_t **philo, t_p_data *p_data, int *esc_flag)
 {
-	if (flag & 1)
-		pthread_mutex_unlock(data->ffork->lock);
-	if (flag & 2)
-		pthread_mutex_unlock(data->sfork->lock);
-	return (0);
-}
+	int		i;
+	long	start_t;
 
-int	waiting(t_p_data *data)
-{
-	data->wait_start_t = get_time(0);
-	pthread_mutex_lock(data->ffork->lock);
-	data->use_ffork = data->ffork->fork;
-	if (!print_status(data, 0))
-		return (unlock(data, 1));
-	if (data->ffork->lock == data->sfork->lock)
-	{
-		*data->esc_flag = -1;
-		return (unlock(data, 1));
-	}
-	pthread_mutex_lock(data->sfork->lock);
-	data->use_sfork = data->sfork->fork;
-	if (!print_status(data, 0))
-		return (unlock(data, 3));
-	return (1);
-}
-
-int	eating(t_p_data *data)
-{
-	long	eat_start_t;
-
-	if (!print_status(data, 1))
-		return (unlock(data, 3));
-	eat_start_t = get_time(0);
-	while (eat_start_t + data->eat_t > get_time(0))
-	{
-		if (data->wait_start_t + data->die_t < get_time(0))
-		{
-			print_status(data, 4);
-			*data->esc_flag = -1;
-			return (unlock(data, 3));
-		}
-		usleep(100);
-	}
-	pthread_mutex_unlock(data->ffork->lock);
-	data->use_ffork = -1;
-	pthread_mutex_unlock(data->sfork->lock);
-	data->use_sfork = -1;
-	return (1);
-}
-
-int	sleeping(t_p_data *data)
-{
-	long	sleep_start_t;
-
-	if (!print_status(data, 2))
+	*philo = (pthread_t *)malloc(sizeof(pthread_t) * p_data->n);
+	if (!*philo)
 		return (0);
-	sleep_start_t = get_time(0);
-	while (sleep_start_t + data->sleep_t > get_time(0))
-		usleep(100);
+	start_t = get_time(0);
+	i = -1;
+	while (++i < p_data->n / 2)
+	{
+		(p_data + i * 2 + 1)->start_t = start_t;
+		(p_data + i * 2 + 1)->esc_flag = esc_flag;
+		if (pthread_create((*philo + i * 2 + 1), \
+		0, func, (void *)(p_data + i * 2 + 1)))
+			return (0);
+	}
+	i = -1;
+	while (++i < p_data->n / 2 + p_data->n % 2)
+	{
+		(p_data + i * 2)-> start_t = start_t;
+		(p_data + i * 2)->esc_flag = esc_flag;
+		if (pthread_create((*philo + i * 2), 0, func, (void *)(p_data + i * 2)))
+			return (0);
+	}
 	return (1);
 }
 
-void	*func(void *arg)
+void	p_esc(pthread_t *philo, t_p_data *p_data, int *esc_flag)
 {
-	int			i;
-	t_p_data	*data;
+	int	i;
+	int	ret;
 
-	data = (t_p_data *)arg;
-	i = 0;
-	while (++i)
-	{
-		if (!waiting(data) || !eating(data))
-			return (0);
-		if (data->eat_n == i)
-		{
-			pthread_mutex_lock(data->v_lock);
-			(*data->esc_flag)++;
-			pthread_mutex_unlock(data->v_lock);
-			return ((void *)1);
-		}
-		if (!sleeping(data))
-			return (0);
-		if (!print_status(data, 3))
-			return (0);
-	}
-	return (0);
+	while (!(*esc_flag == -1 || *esc_flag == p_data->n))
+		;
+	i = -1;
+	while (++i < p_data->n)
+		pthread_join(philo[i], (void *)&ret);
 }

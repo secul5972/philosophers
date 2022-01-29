@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:23:35 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/29 14:47:04 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/01/29 16:25:59 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ int	print_status(t_p_data *data, int status)
 	pthread_mutex_unlock(data->p_lock);
 	free(curr_tc);
 	return (1);
+}
+
+long	get_time(long start_t)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, 0);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000 - start_t);
 }
