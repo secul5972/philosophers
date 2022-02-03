@@ -106,5 +106,5 @@ int	all_free(t_p_data *p_data, pthread_t *philo, t_locks *locks, int flag)
 		free(philo);
 	if ((flag & 1) && p_data)
 		p_data_free(p_data);
-	return (1);
+	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:23:35 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/29 16:39:19 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:08:59 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,16 @@ int	print_status(t_p_data *data, int status)
 
 	if (*data->esc_flag == -1)
 		return (0);
+	pthread_mutex_lock(data->p_lock);
 	curr_t = get_time(data->start_t);
 	curr_tc = ft_itoa(curr_t);
 	if (curr_tc == 0)
 	{
+		pthread_mutex_unlock(data->p_lock);
 		*data->esc_flag = -1;
 		free(curr_tc);
 		return (0);
 	}
-	pthread_mutex_lock(data->p_lock);
 	write_data(data, status, curr_tc);
 	pthread_mutex_unlock(data->p_lock);
 	free(curr_tc);

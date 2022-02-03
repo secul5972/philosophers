@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 11:46:13 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/29 16:12:21 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:42:58 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ int	waiting(t_p_data *data)
 		return (unlock(data, 1));
 	if (data->ffork->lock == data->sfork->lock)
 	{
+		while (data->wait_start_t + data->die_t > get_time(0))
+			;
+		print_status(data, 4);
 		*data->esc_flag = -1;
 		return (unlock(data, 1));
 	}
@@ -98,6 +101,7 @@ void	*func(void *arg)
 			return (0);
 		if (!print_status(data, 3))
 			return (0);
+		usleep(100);
 	}
 	return (0);
 }
