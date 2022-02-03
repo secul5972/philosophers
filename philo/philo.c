@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 11:59:22 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/01/29 16:19:26 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/02/03 12:15:06 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	main(int argc, char **argv)
 	t_locks		locks;
 	int			esc_flag;
 
+	philo = 0;
 	if (!p_init(argc, argv, &p_data))
 	{
 		write(2, "parameter error\n", 16);

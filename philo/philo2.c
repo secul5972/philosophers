@@ -6,7 +6,7 @@
 /*   By: seungcoh <seungcoh@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:12:01 by seungcoh          #+#    #+#             */
-/*   Updated: 2022/02/03 11:53:47 by seungcoh         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:54:40 by seungcoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	p_create(pthread_t **philo, t_p_data *p_data, int *esc_flag)
 	{
 		(p_data + i * 2 + 1)->start_t = start_t;
 		(p_data + i * 2 + 1)->esc_flag = esc_flag;
-		pthread_create((*philo + i * 2 + 1), \
-		0, func, (void *)(p_data + i * 2 + 1));
+		if (pthread_create((*philo + i * 2 + 1), \
+		0, func, (void *)(p_data + i * 2 + 1)))
+			return (0);
 	}
 	usleep(50);
 	i = -1;
@@ -35,7 +36,8 @@ int	p_create(pthread_t **philo, t_p_data *p_data, int *esc_flag)
 	{
 		(p_data + i * 2)-> start_t = start_t;
 		(p_data + i * 2)->esc_flag = esc_flag;
-		pthread_create((*philo + i * 2), 0, func, (void *)(p_data + i * 2));
+		if (pthread_create((*philo + i * 2), 0, func, (void *)(p_data + i * 2)))
+			return (0);
 	}
 	return (1);
 }
